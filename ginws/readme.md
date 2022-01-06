@@ -7,7 +7,7 @@ docker pull nginx:1.18
 2、准备数据卷目录
 
 ```shell
-# mkdir -p /data/docker/nginx/conf/vhost
+# mkdir -p /data/docker/nginx/config/vhost
 # mkdir -p /data/docker/nginx/logs
 # mkdir -p /data/docker/nginx/html
 # mkdir -p /data/docker/nginx/ssl
@@ -16,7 +16,7 @@ docker pull nginx:1.18
 3、配置nginx.conf
 
 ```shell
-# vi /data/docker/nginx/conf/nginx.conf
+# vi /data/docker/nginx/config/nginx.config
 
 user root;
 worker_processes 4; 
@@ -69,7 +69,7 @@ http {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
  
  
-    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/config.d/*.config;
 }
 ```
 
@@ -77,9 +77,9 @@ http {
 
 ```shell
 docker run -d --name nginx-server --rm  -p 80:80 \
--v /data/docker/nginx/conf/vhost:/etc/nginx/conf.d:rw \
+-v /data/docker/nginx/config/vhost:/etc/nginx/config.d:rw \
 -v /data/docker/nginx/logs:/var/log/nginx:rw \
--v /data/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:rw \
+-v /data/docker/nginx/config/nginx.config:/etc/nginx/nginx.config:rw \
 -v /data/docker/nginx/html:/etc/nginx/html:rw \
 nginx:1.18
 ```

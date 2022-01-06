@@ -1,0 +1,12 @@
+{
+  "database": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "cloudsuite@Passw0rd",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "db_name": "blogweb_gin",
+    "charset": "utf8",
+    "show_sql": true
+  }
+}
