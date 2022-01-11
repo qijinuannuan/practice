@@ -27,7 +27,7 @@ func (ad *ArticleDao) AddArticle(article *models.Article) (int64, error) {
 func (ad *ArticleDao)FindArticleWithPage(page int) ([]*models.Article, error) {
 	//从配置文件中获取每页的文章数量
 	var articles []*models.Article
-	if err := ad.Where(" id > 0 ").Limit(config.NUM, (page-1)*config.NUM).Find(&articles); err != nil {
+	if err := ad.Where(" id > 0 and is_removed = 0 ").Limit(config.NUM, (page-1)*config.NUM).Find(&articles); err != nil {
 		return nil, err
 	}
 	return articles, nil
@@ -36,7 +36,7 @@ func (ad *ArticleDao)FindArticleWithPage(page int) ([]*models.Article, error) {
 // QueryArticleRowNum 查询文章的总条数
 func (ad *ArticleDao)QueryArticleRowNum() int {
 	articles := new(models.Article)
-	count, err := ad.Where(" id > ? ", 0).Count(articles)
+	count, err := ad.Where(" id > ? and is_removed = 0 ", 0).Count(articles)
 	if err != nil {
 		return 0
 	}
@@ -47,7 +47,7 @@ func (ad *ArticleDao)QueryArticleRowNum() int {
 
 func (ad *ArticleDao)QueryArticleWithId(id int) *models.Article {
 	articles := new(models.Article)
-	if _, err := ad.Where(" id = ? ", id).Get(articles); err != nil {
+	if _, err := ad.Where(" id = ? and is_removed = 0 ", id).Get(articles); err != nil {
 		return nil
 	}
 	return articles
@@ -58,4 +58,13 @@ func (ad *ArticleDao)QueryArticleWithId(id int) *models.Article {
 func (ad *ArticleDao)UpdateArticle(article *models.Article) (int64, error) {
 	//数据库操作
 	return ad.Id(article.Id).Update(article)
+}
+
+func (ad *ArticleDao)DeleteArticle(id int) error {
+	article := new(models.Article)
+	article.IsRemoved = 1
+	if _, err := ad.Id(id).Update(article); err != nil {
+		return err
+	}
+	return nil
 }

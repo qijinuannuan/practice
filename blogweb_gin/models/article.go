@@ -8,4 +8,5 @@ type Article struct {
 	Short      string `xorm:"varchar(255)" json:"short"`
 	Content    string `xorm:"longtext" json:"content"`
 	CreateTime int64  `xorm:"int" json:"create_time"`
+	IsRemoved  int    `xorm:"int default(0)" json:"is_removed"`
 }

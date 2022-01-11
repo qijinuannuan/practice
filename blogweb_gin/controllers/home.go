@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"blogweb_gin/dao"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -19,10 +20,10 @@ func HomeGet(ctx *gin.Context) {
 	artList, err := articleDao.FindArticleWithPage(page)
 	if err != nil {
 		panic(err)
-		return
 	}
 	html := MakeHomeBlocks(artList, islogin)
 	homeFooterPageCode := ConfigHomeFooterPageCode(page)
+	fmt.Println("total :", len(artList))
 	ctx.HTML(http.StatusOK, "home.html", gin.H{
 		"IsLogin": islogin,
 		"Content": html,

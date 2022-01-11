@@ -34,7 +34,7 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             var urlStr = "/register";
-            alert("urlStr:"+urlStr)
+            // alert("urlStr:"+urlStr)
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
@@ -79,7 +79,7 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             var urlStr = "/login"
-            alert("urlStr:" + urlStr)
+            // alert("urlStr:" + urlStr)
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
@@ -152,16 +152,16 @@ $(document).ready(function () {
         //     });
         // }
         submitHandler: function (form) {
-            alert("hello")
+            // alert("hello")
             var urlStr = "/article/add";
             //判断文章id确定提交的表单的服务器地址
             //若id大于零，说明是修改文章
             var artId = $("#write-article-id").val();
-            alert("artId:" + artId);
+            // alert("artId:" + artId);
             if (artId > 0) {
                 urlStr = "/article/update?id=" + artId
             }
-            alert("urlStr:" + urlStr);
+            // alert("urlStr:" + urlStr);
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
@@ -190,7 +190,7 @@ $(document).ready(function () {
         //文件上传通过Formdata去储存文件的数据
         var data = new FormData()
         data.append("upload", $("#album-upload-file")[0].files[0]);
-        alert(data)
+        // alert(data)
         var urlStr = "/upload"
         $.ajax({
             url: urlStr,
