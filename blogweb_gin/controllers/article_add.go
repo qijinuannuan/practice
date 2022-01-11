@@ -9,10 +9,7 @@ import (
 	"time"
 )
 
-/*
-当访问/add路径的时候回触发AddArticleGet方法
-响应的页面是通过HTML
-*/
+// AddArticleGet 当访问/add路径的时候会触发AddArticleGet方法响应的页面是通过HTML
 func AddArticleGet(ctx *gin.Context) {
 
 	//获取session
@@ -28,12 +25,13 @@ func AddArticlePost(ctx *gin.Context) {
 	title := ctx.PostForm("title")
 	tags := ctx.PostForm("tags")
 	short := ctx.PostForm("short")
+	author := ctx.PostForm("author")
 	content := ctx.PostForm("content")
 	fmt.Printf("title:%s,tags:%s\n", title, tags)
 
 	//实例化model，将它出入到数据库中
 
-	art := &models.Article{Title: title, Author: tags, Tags: short, Short: content, Content: "孔壹学院", CreateTime: time.Now().Unix()}
+	art := &models.Article{Title: title, Author: author, Tags: tags, Short: short, Content: content, CreateTime: time.Now().Unix()}
 	articleDao := dao.NewArticleDao()
 	_, err := articleDao.AddArticle(art)
 

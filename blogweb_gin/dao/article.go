@@ -38,7 +38,6 @@ func (ad *ArticleDao)QueryArticleRowNum() int {
 	articles := new(models.Article)
 	count, err := ad.Where(" id > ? ", 0).Count(articles)
 	if err != nil {
-		panic(err)
 		return 0
 	}
 	return int(count)
@@ -52,4 +51,11 @@ func (ad *ArticleDao)QueryArticleWithId(id int) *models.Article {
 		return nil
 	}
 	return articles
+}
+
+//----------修改数据----------
+
+func (ad *ArticleDao)UpdateArticle(article *models.Article) (int64, error) {
+	//数据库操作
+	return ad.Id(article.Id).Update(article)
 }

@@ -32,8 +32,15 @@ func InitRouter() *gin.Engine {
 	//路由组
 	v1 := router.Group("/article")
 	{
+		//写文章
 		v1.GET("/add", controllers.AddArticleGet)
 		v1.POST("/add", controllers.AddArticlePost)
+		//显示文章内容
+		//v1.GET("/show/:id", controllers.ShowArticleGet)
+
+		//更新文章
+		v1.GET("/update",controllers.UpdateArticleGet)
+		v1.POST("/update",controllers.UpdateArticlePost)
 	}
 
 	//显示文章内容

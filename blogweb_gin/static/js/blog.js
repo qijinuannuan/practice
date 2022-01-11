@@ -125,6 +125,32 @@ $(document).ready(function () {
                 minlength: "文章内容最少两个字符"
             }
         },
+        // submitHandler: function (form) {
+        //     // alert("hello")
+        //     var urlStr = "/article/add";
+        //     //判断文章id确定提交的表单的服务器地址
+        //     //若id大于零，说明是修改文章
+        //     var artId = $("#write-article-id").val();
+        //     // alert("artId:" + artId);
+        //     if (artId > 0) {
+        //         urlStr = "/article/update"
+        //     }
+        //     // alert("urlStr:" + urlStr);
+        //     $(form).ajaxSubmit({
+        //         url: urlStr,
+        //         type: "post",
+        //         dataType: "json",
+        //         success: function (data, status) {
+        //             alert("data: " + data.message);
+        //             setTimeout(function () {
+        //                 window.location.href = "/"
+        //             }, 1000)
+        //         },
+        //         error: function (data, status) {
+        //             alert("err: " + data.message + ":" + status)
+        //         }
+        //     });
+        // }
         submitHandler: function (form) {
             alert("hello")
             var urlStr = "/article/add";
@@ -133,7 +159,7 @@ $(document).ready(function () {
             var artId = $("#write-article-id").val();
             alert("artId:" + artId);
             if (artId > 0) {
-                urlStr = "/article/update"
+                urlStr = "/article/update?id=" + artId
             }
             alert("urlStr:" + urlStr);
             $(form).ajaxSubmit({
@@ -141,13 +167,13 @@ $(document).ready(function () {
                 type: "post",
                 dataType: "json",
                 success: function (data, status) {
-                    alert("data: " + data.message);
+                    alert(":data:" + data.message);
                     setTimeout(function () {
                         window.location.href = "/"
                     }, 1000)
                 },
                 error: function (data, status) {
-                    alert("err: " + data.message + ":" + status)
+                    alert("err:" + data.message + ":" + status)
                 }
             });
         }

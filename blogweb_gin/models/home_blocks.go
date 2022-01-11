@@ -25,9 +25,9 @@ type TagLink struct {
 }
 
 type HomeFooterPageCode struct {
-	HasPre bool
-	HasNext bool
+	HasPre   bool
+	HasNext  bool
 	ShowPage string
-	PreLink string
+	PreLink  string
 	NextLink string
 }
