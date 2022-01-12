@@ -42,6 +42,11 @@ func InitRouter() *gin.Engine {
 
 		// 删除文章
 		v1.GET("delete", controllers.DeleteArticle)
+		//相册
+		router.GET("/album",controllers.AlbumGet)
+
+		//文件上传
+		router.POST("/upload",controllers.UploadPost)
 	}
 
 	//显示文章内容
