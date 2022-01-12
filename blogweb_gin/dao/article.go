@@ -68,3 +68,17 @@ func (ad *ArticleDao)DeleteArticle(id int) error {
 	}
 	return nil
 }
+
+func (ad *ArticleDao)QueryArticleWithParam(param string) []string {
+	article := new(models.Article)
+	rows, err := ad.Select(param).Where(" is_removed = 0 ").Rows(article)
+	if err != nil {
+	}
+	var paramList []string
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(article)
+		paramList = append(paramList, article.Tags)
+	}
+	return paramList
+}
