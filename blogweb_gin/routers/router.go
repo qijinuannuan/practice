@@ -53,6 +53,8 @@ func InitRouter() *gin.Engine {
 	router.GET("/show/:id", controllers.ShowArticleGet)
 	//标签
 	router.GET("/tags",controllers.TagsGet)
+	//关于我
+	router.GET("/aboutme",controllers.AboutMeGet)
 
 	return router
 }
