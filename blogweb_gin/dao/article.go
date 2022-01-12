@@ -4,6 +4,7 @@ import (
 	"blogweb_gin/config"
 	"blogweb_gin/models"
 	"blogweb_gin/tools"
+	"fmt"
 )
 
 type ArticleDao struct {
@@ -81,4 +82,16 @@ func (ad *ArticleDao)QueryArticleWithParam(param string) []string {
 		paramList = append(paramList, article.Tags)
 	}
 	return paramList
+}
+
+// QueryArticlesWithTag --------------按照标签查询--------------
+func (ad *ArticleDao)QueryArticlesWithTag(tag string) ([]*models.Article, error) {
+	var articles []*models.Article
+	sql := " tags like '%&" + tag + "&%'"
+	sql += " or tags like '%&" + tag + "'"
+	sql += " or tags like '" + tag + "&%'"
+	sql += " or tags like '" + tag + "'"
+	fmt.Println(sql)
+	err := ad.Where(sql).Find(&articles)
+	return articles, err
 }
