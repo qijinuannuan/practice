@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"gin-blog/pkg/setting"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"log"
 )
@@ -45,6 +46,9 @@ func init() {
 	db.SingularTable(true)
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
+
+	// 根据 User 结构体，自动创建表结构.
+	db.AutoMigrate(&Tag{})
 }
 
 func CloseDB() {
