@@ -15,6 +15,7 @@ func main() {
 	//		"message": "test",
 	//	})
 	//})
+	//router.Run()
 
 	router := routers.InitRouter()
 

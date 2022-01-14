@@ -47,8 +47,8 @@ func init() {
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
 
-	// 根据 User 结构体，自动创建表结构.
-	db.AutoMigrate(&Tag{})
+	// 根据 Tag 结构体，自动创建表结构.
+	db.AutoMigrate(&Tag{}, &Article{})
 }
 
 func CloseDB() {
