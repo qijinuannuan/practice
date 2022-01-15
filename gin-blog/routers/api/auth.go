@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"gin-blog/models"
 	"gin-blog/pkg/e"
 	"gin-blog/pkg/util"
