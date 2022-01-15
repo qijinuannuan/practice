@@ -1,0 +1,4 @@
+[INFO][article.go:71]2022/01/15 14:24:30 [state 状态只允许0或1]
+[INFO][article.go:71]2022/01/15 14:24:30 [tag_id 标签ID必须大于0]
+[INFO][article.go:71]2022/01/15 14:24:40 [state 状态只允许0或1]
+[INFO][article.go:71]2022/01/15 14:24:40 [tag_id 标签ID必须大于0]

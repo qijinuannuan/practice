@@ -3,9 +3,9 @@ package v1
 import (
 	"gin-blog/models"
 	"gin-blog/pkg/e"
+	"gin-blog/pkg/logging"
 	"gin-blog/pkg/setting"
 	"gin-blog/pkg/util"
-	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
@@ -29,7 +29,7 @@ func GetArticle(ctx *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			logs.Info(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	ctx.JSON(http.StatusOK, gin.H{
@@ -68,7 +68,7 @@ func GetArticles(ctx *gin.Context) {
 		data["total"] = models.GetTagTotal(maps)
 	} else {
 		for _, err := range valid.Errors {
-			logs.Info(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	ctx.JSON(http.StatusOK, gin.H{
@@ -111,7 +111,7 @@ func AddArticle(ctx *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			logs.Info(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	ctx.JSON(http.StatusOK, gin.H{
@@ -169,7 +169,7 @@ func EditArticle(ctx *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			logs.Info(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	ctx.JSON(http.StatusOK, gin.H{
@@ -194,7 +194,7 @@ func DeleteArticle(ctx *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			logs.Info(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	ctx.JSON(http.StatusOK, gin.H{
