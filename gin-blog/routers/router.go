@@ -1,9 +1,7 @@
 package routers
 
 import (
-	"gin-blog/middleware/jwt"
 	"gin-blog/pkg/setting"
-	"gin-blog/routers/api"
 	v1 "gin-blog/routers/api/v1"
 	"github.com/gin-gonic/gin"
 
@@ -23,10 +21,10 @@ func InitRouter() *gin.Engine {
 			"message": "test",
 		})
 	})
-	engine.GET("auth", api.GetAuth)
+	//engine.GET("auth", api.GetAuth)
 	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	apiv1 := engine.Group("/api/v1")
-	apiv1.Use(jwt.JWT())
+	//apiv1.Use(jwt.JWT())
 	{
 		//获取标签列表
 		apiv1.GET("/tags", v1.GetTags)
