@@ -44,3 +44,5 @@
 [INFO][main.go:37]2022/01/18 15:41:56 [Server err: %v accept tcp [::]:8000: use of closed network connection]
 [INFO][main.go:33]2022/01/18 15:41:59 [Actual pid is %d 99703]
 [INFO][main.go:37]2022/01/18 15:42:01 [Server err: %v accept tcp [::]:8000: use of closed network connection]
+[INFO][main.go:33]2022/01/18 15:46:26 [Actual pid is %d 100125]
+[INFO][main.go:37]2022/01/18 15:47:43 [Server err: %v accept tcp [::]:8000: use of closed network connection]

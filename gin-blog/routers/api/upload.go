@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"gin-blog/pkg/e"
 	"gin-blog/pkg/logging"
 	"gin-blog/pkg/upload"
@@ -29,7 +28,6 @@ func UploadImage(c *gin.Context) {
 		fullPath := upload.GetImageFullPath()
 		savePath := upload.GetImagePath()
 		src := fullPath + imageName
-		fmt.Println("-----",src)
 		if ! upload.CheckImageExt(imageName) || ! upload.CheckImageSize(file) {
 			code = e.ERROR_UPLOAD_CHECK_IMAGE_FORMAT
 		} else {
