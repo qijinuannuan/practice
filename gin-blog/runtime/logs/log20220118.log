@@ -1,0 +1,2 @@
+[INFO][main.go:29]2022/01/18 13:51:11 [Actual pid is %d 90627]
+[INFO][main.go:33]2022/01/18 13:51:13 [Server err: %v accept tcp [::]:8000: use of closed network connection]

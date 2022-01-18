@@ -11,6 +11,12 @@ type Article struct {
 	ModifiedBy string `json:"modified_by"`
 	State      int    `json:"state"`
 }
+
+func CleanAllArticle() bool {
+	db.Unscoped().Where("deleted_on != ? ", 0).Delete(&Article{})
+	return true
+}
+
 //
 //func (article *Article) BeforeCreate(scope *gorm.Scope) error {
 //	if err := scope.SetColumn("CreatedOn", time.Now().Unix()); err != nil {

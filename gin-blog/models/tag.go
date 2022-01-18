@@ -8,6 +8,12 @@ type Tag struct {
 	State      int    `json:"state"`
 }
 
+func CleanAllTag() bool {
+	db.Unscoped().Where("deleted_on != ? ", 0).Delete(&Tag{})
+
+	return true
+}
+
 //func (tag *Tag) BeforeCreate(scope *gorm.Scope) error {
 //	if err := scope.SetColumn("CreatedOn", time.Now().Unix()); err != nil {
 //		return err
