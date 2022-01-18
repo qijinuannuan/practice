@@ -10,6 +10,7 @@ type Article struct {
 	CreatedBy  string `json:"created_by"`
 	ModifiedBy string `json:"modified_by"`
 	State      int    `json:"state"`
+	CoverImageUrl string `gorm:"varchar(255) DEFAULT '' COMMENT '封面图片地址'" json:"cover_image_url"`
 }
 
 func CleanAllArticle() bool {

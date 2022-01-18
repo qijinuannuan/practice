@@ -64,7 +64,7 @@ func GetArticles(ctx *gin.Context) {
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
 		code = e.SUCCESS
-		data["lists"] = models.GetArticles(util.GetPage(ctx), setting.PageSize, maps)
+		data["lists"] = models.GetArticles(util.GetPage(ctx), setting.AppSetting.PageSize, maps)
 		data["total"] = models.GetTagTotal(maps)
 	} else {
 		for _, err := range valid.Errors {
@@ -86,6 +86,7 @@ func AddArticle(ctx *gin.Context) {
 	content := ctx.Query("content")
 	createdBy := ctx.Query("created_by")
 	state := com.StrTo(ctx.DefaultQuery("state", "0")).MustInt()
+	coverImageUrl := ctx.Query("cover_image_url")
 
 	valid := validation.Validation{}
 	valid.Min(tagId, 1, "tag_id").Message("标签ID必须大于0")
@@ -104,6 +105,7 @@ func AddArticle(ctx *gin.Context) {
 			data["content"] = content
 			data["created_by"] = createdBy
 			data["state"] = state
+			data["cover_image_url"] = coverImageUrl
 			models.AddArticle(data)
 			code = e.SUCCESS
 		} else {
@@ -130,6 +132,7 @@ func EditArticle(ctx *gin.Context) {
 	desc := ctx.Query("desc")
 	content := ctx.Query("content")
 	modifiedBy := ctx.Query("modified_by")
+	coverImageUrl := ctx.Query("cover_image_url")
 	var state int = -1
 	if arg := ctx.Query("state"); arg != "" {
 		state = com.StrTo(arg).MustInt()
@@ -157,6 +160,9 @@ func EditArticle(ctx *gin.Context) {
 				}
 				if content != "" {
 					data["content"] = content
+				}
+				if coverImageUrl != "" {
+					data["cover_image_url"] = coverImageUrl
 				}
 				data["modified_by"] = modifiedBy
 				models.EditArticle(id, data)

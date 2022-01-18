@@ -2,8 +2,11 @@ package routers
 
 import (
 	"gin-blog/pkg/setting"
+	"gin-blog/pkg/upload"
+	"gin-blog/routers/api"
 	v1 "gin-blog/routers/api/v1"
 	"github.com/gin-gonic/gin"
+	"net/http"
 
 	_ "github.com/EDDYCJY/go-gin-example/docs"
 	"github.com/swaggo/gin-swagger"
@@ -14,7 +17,7 @@ func InitRouter() *gin.Engine {
 	engine := gin.New()
 	engine.Use(gin.Logger())
 	engine.Use(gin.Recovery())
-	gin.SetMode(setting.RunMode)
+	gin.SetMode(setting.ServerSetting.RunMode)
 	engine.GET("/test", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"code": 1,
@@ -23,6 +26,8 @@ func InitRouter() *gin.Engine {
 	})
 	//engine.GET("auth", api.GetAuth)
 	engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	engine.POST("/upload", api.UploadImage)
+	engine.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 	apiv1 := engine.Group("/api/v1")
 	//apiv1.Use(jwt.JWT())
 	{
